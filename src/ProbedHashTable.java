@@ -200,6 +200,13 @@ public class ProbedHashTable<K,V> implements HashTable<K,V> {
     } // if there are too many entries
     // Find out where the key belongs and put the pair there.
     int index = find(key);
+    while (this.pairs[index] != null && !((Pair<K,V>)this.pairs[index]).key().equals(key)) {
+      index += PROBE_OFFSET;
+    }
+    if (this.pairs[index] != null) {
+      // Note that we've incremented the size.
+      ++this.size;
+    }
     if (this.pairs[index] != null) {
       result = ((Pair<K,V>) this.pairs[index]).value();
     } // if
@@ -208,8 +215,6 @@ public class ProbedHashTable<K,V> implements HashTable<K,V> {
     if (REPORT_BASIC_CALLS && (reporter != null)) {
       reporter.report("pairs[" + index + "] = " + key + ":" + value);
     } // if reporter != null
-    // Note that we've incremented the size.
-    ++this.size;
     // And we're done
     return result;
   } // set(K,V)
