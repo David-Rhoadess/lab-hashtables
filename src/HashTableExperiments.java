@@ -49,7 +49,7 @@ public class HashTableExperiments {
     htab.dump(pen);
     htab.set("bravo", "bravo");
     htab.dump(pen);
-    htab.set("e", "echo");
+    htab.set("beta", "max");
     htab.dump(pen);
     htab.reportBasicCalls(false);
     checkGet(pen, htab, "beta");
@@ -74,6 +74,7 @@ public class HashTableExperiments {
   public static void matchingSetExpt(PrintWriter pen, HashTable<String, String> htab) {
     pen.println("Setting anteater");
     htab.set("anteater", "anteater");
+    pen.println("Setting buffalo");
     htab.set("buffalo", "buffalo");
     checkGet(pen, htab, "anteater");
     checkGet(pen, htab, "buffalo");
@@ -114,7 +115,21 @@ public class HashTableExperiments {
    * Explore what happens when we remove elements.
    */
   public static void removeExpt(PrintWriter pen, HashTable<String, String> htab) {
-    // STUB
+    htab.reportBasicCalls(true);
+    htab.set("alpha", "alpha");
+    htab.set("beta", "beta");
+    htab.set("bravo", "bravo");
+    htab.set("e", "max");
+    htab.dump(pen);
+    htab.remove("beta");
+    htab.dump(pen);
+    htab.remove("e");
+    htab.dump(pen);
+    htab.remove("alpha");
+    htab.dump(pen);
+    htab.remove("bravo");
+    htab.dump(pen);
+    pen.println();
   } // removeExpt(PrintWriter, HashTable)
 
 } // class HashTableExpt
